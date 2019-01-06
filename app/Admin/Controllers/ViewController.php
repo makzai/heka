@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Album;
 use App\Models\View;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
@@ -85,6 +86,7 @@ class ViewController extends Controller
         $grid->name('名称');
         $grid->sort('排序');
         $grid->title('副标题');
+        $grid->column('album.name', '相册');
         $grid->card_img('贺卡图')->image();
 
         return $grid;
@@ -104,9 +106,11 @@ class ViewController extends Controller
         $show->name('名称');
         $show->sort('排序');
         $show->title('副标题');
-        $show->album_id('Album id');
+        $show->album('相册', function ($album) {
+            $album->name('名称');
+        });
         $show->intro('简介');
-        $show->card_img('贺卡图');
+        $show->card_img('贺卡图')->image();
         $show->card_intro('贺卡简介');
 
         return $show;
@@ -124,11 +128,21 @@ class ViewController extends Controller
         $form->text('name', '名称');
         $form->number('sort', '排序');
         $form->text('title', '副标题');
-        $form->number('album_id', 'Album id');
+        $form->select('album_id', '相册')->options($this->getAlbumSelect());
         $form->textarea('intro', '简介');
-        $form->url('card_img', '贺卡图');
+        $form->image('card_img','贺卡图')->uniqueName();
         $form->textarea('card_intro', '贺卡简介');
 
         return $form;
+    }
+
+    private function getAlbumSelect()
+    {
+        $c = Album::get();
+        $s = [];
+        foreach ($c as $v) {
+            $s[$v->id] = $v->name;
+        }
+        return $s;
     }
 }

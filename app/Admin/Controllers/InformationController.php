@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Models\Category;
 use App\Models\Information;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
@@ -87,8 +88,14 @@ class InformationController extends Controller
         $grid->label('标签');
         $grid->intro('简介');
         $grid->head_img('封面图')->image();
-        $grid->type('跳转类型');
-
+        $grid->type('跳转类型')->display(function ($type) {
+            $t = [
+                1  => '链接',
+                2  => '长图',
+                3  => '详情',
+            ];
+            return $t[$type];
+        });
         return $grid;
     }
 
@@ -107,12 +114,20 @@ class InformationController extends Controller
         $show->category('分类', function ($category) {
             $category->name('名称');
         });
-        $show->label('标签');
+        $show->label('标签')->label();
         $show->intro('简介');
-        $show->head_img('封面图');
-        $show->type('跳转类型');
+        $show->head_img('封面图')->image();
+//        $show->type('跳转类型');
+        $show->type('跳转类型')->as(function ($type) {
+            $t = [
+                1  => '链接',
+                2  => '长图',
+                3  => '详情',
+            ];
+            return $t[$type];
+        });
         $show->link('链接');
-        $show->long_img('长图');
+        $show->long_img('长图')->image();
         $show->detail('详情');
 
         return $show;
@@ -128,7 +143,8 @@ class InformationController extends Controller
         $form = new Form(new Information);
 
         $form->text('name', '名称');
-        $form->number('category_id', '分类');
+        $form->select('category_id', '分类')->options($this->getCategorySelect());
+
         $form->text('label', '标签');
         $form->textarea('intro', '简介');
         $form->image('head_img','封面图')->uniqueName();
@@ -142,5 +158,15 @@ class InformationController extends Controller
         $form->image('long_img','长图')->uniqueName()->rules('nullable');
         $form->editor('detail', '详情')->rules('nullable');
         return $form;
+    }
+
+    private function getCategorySelect()
+    {
+        $c = Category::get();
+        $s = [];
+        foreach ($c as $v) {
+            $s[$v->id] = $v->name;
+        }
+        return $s;
     }
 }

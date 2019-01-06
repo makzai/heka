@@ -20,7 +20,7 @@ class View extends Model
 
     public function album()
     {
-        return $this->hasOne(Album::class);
+        return $this->belongsTo(Album::class);
     }
 
 }
