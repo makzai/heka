@@ -64,6 +64,19 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domains' => [
+                'default'   => 'fuwu.saasphp.cn', //你的七牛域名
+                'https'     => 'fuwu.saasphp.cn',         //你的HTTPS域名
+                'custom'    => '',                //你的自定义域名
+            ],
+            'access_key'=> 'j-jOP17ZnhrNhbsmaO-6bWkGXmTqb2S8Td0Sbx9o',  //AccessKey
+            'secret_key'=> 'nBIEkRGB-VixanrAuzG2r4s3mKy5EHqCfLKDqZ_e',  //SecretKey
+            'bucket'    => 'heka',  //Bucket名字
+            'notify_url'=> '',  //持久化处理回调地址
+            'url'       => '',  // 填写文件访问根url
+        ],
     ],
 
 ];

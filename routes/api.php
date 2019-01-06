@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('health', function () {
+    return "health";
 });
+
+Route::get('keywords', 'OtherController@keywords');
+Route::get('wishes', 'OtherController@wishes');
+Route::get('views', 'ViewController@index');
+Route::get('view/{id}', 'ViewController@show');
+Route::get('categories', 'CategoryController@index');
+Route::get('information', 'InformationController@index');
