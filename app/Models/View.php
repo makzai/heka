@@ -24,4 +24,17 @@ class View extends Model
         return $this->belongsTo(Album::class);
     }
 
+    protected $appends = ['api_main_img', 'api_card_img'];
+
+    public function getApiMainImgAttribute()
+    {
+        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+            ltrim($this->attributes['main_img'], '/');
+    }
+
+    public function getApiCardImgAttribute()
+    {
+        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+            ltrim($this->attributes['card_img'], '/');
+    }
 }
