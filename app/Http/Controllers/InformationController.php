@@ -10,6 +10,9 @@ class InformationController extends Controller
     public function index(Request $request)
     {
         $cid = $request->input('cid');
-        return Information::where('category_id', $cid)->orderBy('updated_at', 'desc')->get();
+        return Information::where('category_id', $cid)
+            ->orderBy('sort', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
     }
 }

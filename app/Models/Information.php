@@ -10,6 +10,7 @@ class Information extends Model
 
     protected $fillable = [
         'name',
+        'sort',
         'category_id',
         'label',
         'intro',

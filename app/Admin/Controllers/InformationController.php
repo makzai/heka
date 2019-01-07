@@ -84,9 +84,10 @@ class InformationController extends Controller
 
         $grid->id('Id');
         $grid->name('名称');
+        $grid->sort('排序');
         $grid->column('category.name', '分类');
         $grid->label('标签');
-        $grid->intro('简介');
+//        $grid->intro('简介');
         $grid->head_img('封面图')->image();
         $grid->type('跳转类型')->display(function ($type) {
             $t = [
@@ -111,6 +112,7 @@ class InformationController extends Controller
 
         $show->id('Id');
         $show->name('名称');
+        $show->sort('排序');
         $show->category('分类', function ($category) {
             $category->name('名称');
 
@@ -150,6 +152,7 @@ class InformationController extends Controller
         $form = new Form(new Information);
 
         $form->text('name', '名称');
+        $form->number('sort', '排序');
         $form->select('category_id', '分类')->options($this->getCategorySelect());
 
         $form->text('label', '标签');
