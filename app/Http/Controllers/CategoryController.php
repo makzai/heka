@@ -9,6 +9,6 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return Category::get();
+        return Category::orderBy('sort', 'desc')->get();
     }
 }
