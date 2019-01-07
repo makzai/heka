@@ -14,8 +14,8 @@ class Img extends Model
         'path',
     ];
 
-    public function getPathAttribute($value)
-    {
-        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.ltrim($value, '/');
-    }
+//    public function getPathAttribute($value)
+//    {
+//        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.ltrim($value, '/');
+//    }
 }
