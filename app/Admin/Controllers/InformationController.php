@@ -113,6 +113,13 @@ class InformationController extends Controller
         $show->name('名称');
         $show->category('分类', function ($category) {
             $category->name('名称');
+
+            $category->panel()
+                ->tools(function ($tools) {
+                    $tools->disableEdit();
+                    $tools->disableList();
+                    $tools->disableDelete();
+                });
         });
         $show->label('标签')->label();
         $show->intro('简介');

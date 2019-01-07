@@ -10,10 +10,10 @@ class Album extends Model
 
     protected $fillable = [
         'name',
-        'imgs',
     ];
 
-    protected $casts = [
-        'imgs' => 'array',
-    ];
+    public function imgs()
+    {
+        return $this->hasMany(Img::class);
+    }
 }

@@ -99,7 +99,17 @@ class AlbumController extends Controller
 
         $show->id('Id');
         $show->name('名称');
-        $show->imgs('Imgs');
+        $show->imgs('图片', function ($imgs) {
+            $imgs->sort('排序');
+            $imgs->path('图片')->image();
+
+            $imgs->disableCreateButton();
+            $imgs->disablePagination();
+            $imgs->disableFilter();
+            $imgs->disableExport();
+            $imgs->disableRowSelector();
+            $imgs->disableActions();
+        });
 
         return $show;
     }
@@ -114,7 +124,10 @@ class AlbumController extends Controller
         $form = new Form(new Album);
 
         $form->text('name', '名称');
-        $form->text('imgs', 'Imgs');
+        $form->hasMany('imgs', '相册图片', function (Form\NestedForm $form) {
+            $form->image('path','图片')->uniqueName();
+            $form->number('sort', '排序');
+        });
 
         return $form;
     }
