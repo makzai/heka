@@ -14,6 +14,9 @@ class ViewController extends Controller
 
     public function show(Request $request, $id)
     {
+        if ($id == 0) {
+            return View::with('album.imgs')->inRandomOrder()->first();
+        }
         return View::with('album.imgs')->find($id);
     }
 }
