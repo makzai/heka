@@ -15,3 +15,5 @@ Route::get('/', function () {
     return "miffy";
     //return view('welcome');
 });
+
+Route::post('/uploadFile', 'UploadsController@uploadImg');
