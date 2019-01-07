@@ -13,6 +13,7 @@ class View extends Model
         'sort',
         'title',
         'album_id',
+        'main_img',
         'intro',
         'card_img',
         'card_intro',

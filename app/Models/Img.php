@@ -14,8 +14,11 @@ class Img extends Model
         'path',
     ];
 
-//    public function getPathAttribute($value)
-//    {
-//        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.ltrim($value, '/');
-//    }
+    protected $appends = ['api_path'];
+
+    public function getApiPathAttribute()
+    {
+        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+            ltrim($this->attributes['path'], '/');
+    }
 }

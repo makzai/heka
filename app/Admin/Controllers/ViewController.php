@@ -87,7 +87,7 @@ class ViewController extends Controller
         $grid->sort('排序');
         $grid->title('副标题');
         $grid->column('album.name', '相册');
-        $grid->card_img('贺卡图')->image();
+        $grid->main_img('主图')->image();
 
         return $grid;
     }
@@ -109,6 +109,7 @@ class ViewController extends Controller
         $show->album('相册', function ($album) {
             $album->name('名称');
         });
+        $show->main_img('主图')->image();
         $show->intro('简介');
         $show->card_img('贺卡图')->image();
         $show->card_intro('贺卡简介');
@@ -129,6 +130,7 @@ class ViewController extends Controller
         $form->number('sort', '排序');
         $form->text('title', '副标题');
         $form->select('album_id', '相册')->options($this->getAlbumSelect());
+        $form->image('main_img','主图')->uniqueName();
         $form->textarea('intro', '简介');
         $form->image('card_img','贺卡图')->uniqueName();
         $form->textarea('card_intro', '贺卡简介');
