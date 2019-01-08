@@ -30,13 +30,13 @@ class Information extends Model
 
     public function getApiHeadImgAttribute()
     {
-        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+        return rtrim(env('CDN_HOST', 'http://fuwu.saasphp.cn'), '/').'/'.
             ltrim($this->attributes['head_img'], '/');
     }
 
     public function getApiLongImgAttribute()
     {
-        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+        return rtrim(env('CDN_HOST', 'http://fuwu.saasphp.cn'), '/').'/'.
             ltrim($this->attributes['long_img'], '/');
     }
 }

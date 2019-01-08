@@ -28,13 +28,13 @@ class View extends Model
 
     public function getApiMainImgAttribute()
     {
-        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+        return rtrim(env('CDN_HOST', 'http://fuwu.saasphp.cn'), '/').'/'.
             ltrim($this->attributes['main_img'], '/');
     }
 
     public function getApiCardImgAttribute()
     {
-        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+        return rtrim(env('CDN_HOST', 'http://fuwu.saasphp.cn'), '/').'/'.
             ltrim($this->attributes['card_img'], '/');
     }
 }

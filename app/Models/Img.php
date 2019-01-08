@@ -18,7 +18,7 @@ class Img extends Model
 
     public function getApiPathAttribute()
     {
-        return rtrim(config('filesystems.disks.qiniu.domains.default'), '/').'/'.
+        return rtrim(env('CDN_HOST', 'http://fuwu.saasphp.cn'), '/').'/'.
             ltrim($this->attributes['path'], '/');
     }
 }
