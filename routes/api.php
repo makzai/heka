@@ -23,3 +23,6 @@ Route::get('views', 'ViewController@index');
 Route::get('view/{id}', 'ViewController@show');
 Route::get('categories', 'CategoryController@index');
 Route::get('information', 'InformationController@index');
+
+Route::post('set', 'OtherController@set');
+Route::get('get', 'OtherController@get');
